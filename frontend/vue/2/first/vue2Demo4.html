@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2 demo4</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
+</head>
+
+<body>
+    <div id="vue2Demo4">
+        <!-- <input type="text" v-model="message" placeholder="please enter">
+        <p>message is: {{message}}</p> -->
+
+        <!-- <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+        
+        <input type="checkbox" id="demo1" name="demo1" value="demo1" v-model="checkboxs">
+        <label for="demo1">demo1</label>
+        <input type="checkbox" id="demo2" name="demo2" value="demo2" v-model="checkboxs">
+        <label for="demo2">demo2</label>
+        <input type="checkbox" id="demo3" name="demo3" value="demo3" v-model="checkboxs">
+        <label for="demo3">demo3</label><br>
+        <label for="checkboxZs">{{ checkboxs }}</label> -->
+
+        <!-- <select name="demo" id="demo" multiple v-model="selects">
+            <option disabled value="">please enter</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select> -->
+
+        <!-- <select name="demo2" id="demo2" multiple v-model="selects">
+            <option v-for="item of options" :value="item.value">
+                {{item.text}}
+            </option>
+        </select>
+        <p>select is: {{selects}}</p> -->
+
+        <input type="radio" name="radio2" id="radio2" value="radio2" v-model="radios">
+        <label for="radio2">radio2</label>
+        <input type="radio" name="radio2" id="radio3" value="radio3" v-model="radios">
+        <label for="radio3">radio3</label>
+        <input type="radio" name="radio2" id="radio4" value="radio4" v-model="radios">
+        <label for="radio4">radio4</label>
+        <p>radios is {{radios}}</p>
+    </div>
+</body>
+<script>
+    var vue2Demo4 = new Vue({
+        el: "#vue2Demo4",
+        data: {
+            message: "",
+            checked: false,
+            checkboxs: [],
+            selects: ["A"],
+            radios: "",
+            options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+            ]
+        }
+    })
+</script>
+
+</html>

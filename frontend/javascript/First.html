@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p1 id="demo1">this is my first javascript</p1>
+<br>
+<button type="button" onclick="alert('this is my first button')"
+        style="height: 20px;width: 40px;background-color: red">点</button>
+<style>
+    .demo {
+        font-size: 100px;
+        color: red;
+    }
+</style>
+<script>
+    document.write("<h1 class='demo'>use document to write h1</h1>")
+    console.log(document.getElementById("demo1").style)
+    document.getElementById("demo1").innerText = "<h1>hello heart</h1>"
+    document.getElementById("demo1").innerHTML = "<h1>hello sochina</h1>"
+    console.log(document.getElementById("demo1").parentElement)
+    alert("hello world, this is use alert")
+    window.alert("hello world, this is use window.alert")
+</script>
+</body>
+</html>

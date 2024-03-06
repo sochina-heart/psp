@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>this is my third vue2 demo, event</title>
+</head>
+<body>
+    <div id="vue2-demo3">
+        <!-- <button @click="counter += 1">add one</button>
+        <button @click="counter -= 1">minus one</button>
+        <p>{{counter}}</p> -->
+        <!-- <button @click="greet">please click this button</button> -->
+        <button @click="warn('hello world, my name is sochina-heart, this event is button', $event)">please click this button, welcome to use event</button>
+    </div>
+</body>
+<script>
+    var vue2Demo3 = new Vue({
+        el: "#vue2-demo3",
+        data: {
+            counter: 0,
+            name: "vue2-demo"
+        },
+        methods: {
+            greet: function(event) {
+                alert("hello vue2, this page name is " + this.name)
+                if(event) {
+                    alert("this event is " + event.target.tagName)
+                }
+            },
+            warn: function(message, event) {
+                if(event) {
+                    alert("this event is " + event.target.tagName)
+                }
+                alert(message)
+            }
+        }
+    })
+</script>
+</html>

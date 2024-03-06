@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2 demo5</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
+</head>
+
+<body>
+    <div id="vue2Demo5">
+        <!-- <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter> -->
+
+        <component-demo uname="sochina"></component-demo>
+        <component-demo uname="heart"></component-demo>
+        <component-demo uname="shit"></component-demo>
+    </div>
+</body>
+<script>
+    var count2 = {
+        count: 0
+    }
+    Vue.component('button-counter', {
+        data: function () {
+            // return count2
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+    Vue.component('component-demo', {
+        props: ['uname'],
+        template: '<p>uname is {{uname}}</p>'
+    })
+    var vue2Demo5 = new Vue({
+        el: "#vue2Demo5",
+    })
+</script>
+
+</html>

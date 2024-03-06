@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>first vue2 demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+  <div id="app" :show="b">
+    <!-- mustache 双大括号 -->
+    <!-- {{message}}--{{b}} -->
+
+    <!-- v-once 一次性执行插值，数据更改后，展示不会更新 -->
+    <!-- <span v-once>{{message}}</span> -->
+
+    <!-- mustache 双大括号这种写法，会导致数据变成普通文本，如何数据中含有html代码，需要使用v-html -->
+    <!-- <span>use style: {{aStyle}}</span><br>
+    <span v-html="aStyle"></span> -->
+    <!-- <button v-bind:disabled="isButtonDisabled" style="color: red;">Button</button> -->
+    <!-- {{message}}<br>
+    {{message ? "yes" : "no"}}<br>
+    {{message.split('').reverse().join(',')}}<br> -->
+    <!-- <p v-if="b">hello world, my name is sochina</p> -->
+    <!-- <a v-bind:href="url">click this url</a> -->
+    <!-- <button v-on:click="doDemo()" style="color: red;">click this button</button> -->
+    <!-- <button v-bind:[title]="message">click this button </button> -->
+    <!-- <button @click.prevent="doDemo()">click this button</button> -->
+
+    <!-- <span>{{message}}</span><br>
+    <span>{{reverseMessage}}</span><br>
+    <span>{{reverseMessage2()}}</span> -->
+    <span>firstName: {{firstName}}</span><br>
+    <span>lastName: {{lastName}}</span><br>
+    <span>fullName: {{fullName}}</span>
+  </div>
+</body>
+<script>
+  var demo = { a: 1 }
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: "hello world, my name is sochina-heart",
+      b: false,
+      aStyle: '<span style="color: red;">first use v-html</span>',
+      isButtonDisabled: true,
+      url: "http://www.baidu.com",
+      title: "id",
+      firstName: "sochina",
+      lastName: "heart",
+      fullName: "sochina-heart"
+    },
+    computed: {
+      b() {
+        return demo.a == 2
+      },
+      reverseMessage : function() {
+        return this.message.split("").reverse().join("")
+      }
+    },
+    watch: {
+      firstName: function(newValue, oldValue) {
+        this.fullName = newValue + "-" + this.lastName
+      },
+      lastName: function(newValue, oldValue) {
+        this.fullName = this.firstName + "-" + newValue
+      },
+      /* fullName: function(newValue, oldValue) {
+        return newValue
+      } */
+    },
+    methods: {
+      doDemo() {
+        // alert("hello world, my name is sochina-heart")
+        console.log("hello world, my name is sochina-heart")
+      },
+      reverseMessage2 : function() {
+        return this.message.split("").reverse().join("")
+      }
+    }
+    // computed: {
+    // // 计算属性作为函数
+    // b() {
+    //   // 这里的逻辑是示例，你可以根据需要调整
+    //   // 假设当message是特定值时，b为true，否则为false
+    //   return this.message === 'someCondition';
+  // }
+  })
+</script>
+</html>
