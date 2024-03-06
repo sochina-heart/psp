@@ -1,0 +1,14 @@
+quartz:
+  instanceName: SOCHINAScheduler
+  instanceId: AUTO
+  instanceIdGeneratorClass: com.sochina.config.InstanceIdGeneratorConfig
+  threadPoolClass: org.quartz.simpl.SimpleThreadPool
+  threadPoolThreadCount: 20
+  threadPriority: 5
+  jobStoreClass: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+  isClustered: true
+  clusterCheckinInterval: 15000
+  maxMisfiresToHandleAtATime: 1
+  txIsolationLevelSerializable: true
+  misfireThreshold: 12000
+  tablePrefix: qrtz_

@@ -1,0 +1,16 @@
+server:
+  port: 9003
+spring:
+  application:
+    name: sochina-freemarker
+  freemarker:
+    # 模板后缀名
+    suffix: .vm
+    # 文档类型
+    content-type: application/xml
+    # 页面编码
+    charset: UTF-8
+    # 页面缓存
+    cache: false
+    # 模板路径
+    template-loader-path: classpath:/templates/

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sochina.gateway.mapper.RouteDefinitionMapper">
+
+    <resultMap type="com.sochina.gateway.domain.CustomerRouteDefinition" id="RouteDefinitionResult">
+        <id property="routeDefinitionId" column="route_definition_id"/>
+        <result property="routeId" column="route_id"/>
+        <result property="routeUri" column="route_uri"/>
+        <result property="routePredicates" column="route_predicates"/>
+        <result property="routeFilters" column="route_filters"/>
+        <result property="routeOrder" column="route_order"/>
+        <result property="routeState" column="route_state"/>
+        <result property="routeDelete" column="route_delete"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    <insert id="insert">
+        INSERT INTO route_definition (
+            route_definition_id,
+            route_id,
+            route_uri,
+            route_predicates,
+            route_filters,
+            route_order,
+            route_state
+        )
+        VALUES (
+                   #{routeDefinitionId},
+                   #{routeId},
+                   #{routeUri},
+                   #{routePredicates},
+                   #{routeFilters},
+                   #{routeOrder},
+                   #{routeState}
+               )
+    </insert>
+    <update id="updateById">
+        UPDATE route_definition
+        SET route_id = #{routeId},
+            route_uri = #{routeUri},
+            route_predicates = #{routePredicates},
+            route_filters = #{routeFilters},
+            route_order = #{routeOrder},
+            route_state = #{routeState}
+        WHERE route_definition_id = #{routeDefinitionId}
+    </update>
+    <delete id="deleteById">
+        UPDATE route_definition
+        SET route_delete = '1'
+        WHERE route_definition_id = #{routeDefinitionId}
+    </delete>
+    <select id="findAll" resultMap="RouteDefinitionResult">
+        SELECT route_definition_id,
+               route_id,
+               route_uri,
+               route_predicates,
+               route_filters,
+               route_order,
+               route_state
+        FROM route_definition
+        WHERE route_delete = '0'
+        ORDER BY update_time desc
+    </select>
+    <select id="findByRouteId" resultMap="RouteDefinitionResult">
+        SELECT route_definition_id,
+               route_id,
+               route_uri,
+               route_predicates,
+               route_filters,
+               route_order,
+               route_state
+        FROM route_definition
+        WHERE route_id = #{routeId} AND route_delete = '0'
+    </select>
+    <select id="findById" resultMap="RouteDefinitionResult">
+        SELECT route_definition_id,
+               route_id,
+               route_uri,
+               route_predicates,
+               route_filters,
+               route_order,
+               route_state
+        FROM route_definition
+        WHERE route_definition_id = #{routeDefinitionId}
+    </select>
+
+</mapper>

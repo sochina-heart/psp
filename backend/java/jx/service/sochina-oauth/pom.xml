@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.sochina</groupId>
+        <artifactId>alibaba-study</artifactId>
+        <version>0.0.1</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <artifactId>sochina-oauth</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>sochina-authorization-server</module>
+        <module>sochina-oauth-resource-common</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-actuator</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.sochina</groupId>
+            <artifactId>sochina-commons-mvc</artifactId>
+            <version>${sochina.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sochina</groupId>
+            <artifactId>sochina-commons-redis</artifactId>
+            <version>${sochina.version}</version>
+        </dependency>
+    </dependencies>
+</project>

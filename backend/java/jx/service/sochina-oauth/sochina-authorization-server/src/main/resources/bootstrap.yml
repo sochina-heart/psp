@@ -1,0 +1,33 @@
+nacos.server-addr: 127.0.0.1:21050
+nacos.username: nacos
+nacos.password: ENC(926a0936d2d30c9a26af58ad01df435e593a5bfc6956b69fb39f4e3f0f64cf32)
+nacos.namespace: 4aa381a2-af96-4898-9455-168207961410
+sentinel:
+  group: SENTINEL_GROUP
+server:
+  port: 8090
+spring:
+  application:
+    name: sochina-oauth-authorization-server
+  cloud:
+    nacos:
+      username: ${nacos.username}
+      password: ${nacos.password}
+      discovery:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+      config:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+        file-extension: yml
+        shared-configs: application-commons.yml, sentinel-app.yml
+#  datasource:
+#    druid:
+#      stat-view-servlet:
+#        enabled: false
+#loggin:
+#  level:
+#    root: trace
+jasypt:
+  encryptor:
+    bean: SM4EncryptorByEcb

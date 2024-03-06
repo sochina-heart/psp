@@ -1,0 +1,25 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: sochina-rocketmq
+rocketmq:
+  consumer:
+    group: rocketmq-consumer-group
+    #    消费者 一次拉取消息最大值
+    pull-batch-size: 10
+  name-server: xxxxxxxxxxxxx
+  producer:
+    group: rocketmq-producer-group
+    #    发送消息超时时间，默认3000
+    send-message-timeout: 10000
+    #    发送消息失败重试次数，默认2
+    retry-times-when-send-failed: 2
+    #    异步消息重试次数，默认2
+    retry-times-when-send-async-failed: 2
+    #    消息最大长度，默认1024*1024*4
+    max-message-size: 4096
+    #    压缩消息阈值，默认1024*4
+    compress-message-body-threshold: 4096
+    #    是否在内部消息发送失败时重试另一个broker，默认false
+    retry-next-server: false

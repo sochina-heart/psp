@@ -1,0 +1,22 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: sochina-stream-rocketmq
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: xxxxxxxxxxxx
+      bindings:
+        input:
+          destination: test-topic
+          content-type: application/json
+          group: test-group
+        output:
+          destination: test-topic
+          content-type: application/json
+          group: test-group
+#logging:
+#  level:
+#    root: trace
