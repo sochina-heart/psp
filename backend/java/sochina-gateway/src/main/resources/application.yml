@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: sochina-gateway
+  cloud:
+    nacos:
+      username: 
+      password: 
+      discovery:
+        server-addr: 
+        namespace: 4aa381a2-af96-4898-9455-168207961410
+      config:
+        server-addr: 
+        namespace: 4aa381a2-af96-4898-9455-168207961410
+        file-extension: yml
+  config:
+    import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+  main:
+    lazy-initialization: true
+server:
+  port: 8181
+jasypt:
+  encryptor:
+    password: fdsfsdfs
