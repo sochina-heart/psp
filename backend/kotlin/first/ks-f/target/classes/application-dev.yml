@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: 
+    url: 
+    username: 
+    password: 
+  redis:
+    host: 
+    password: 
+    database: 
+    port: 
