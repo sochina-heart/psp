@@ -1,0 +1,26 @@
+server:
+  port: 18888
+  servlet:
+    context-path: /k
+jasypt:
+  encryptor:
+    bean: SM4CbcJasypt
+spring:
+  application:
+    name: demo
+  cloud:
+    nacos:
+      username: ENC(00c2363dc7055cf0d74d5594bf49b2e1)
+      password: ENC(0766524595b28ce260ce16a3dc4be135149c8e591f474a73b3eaa45a11d61f55)
+      discovery:
+        server-addr: ENC(218076d74b539968dca24a9a0958ea7b3c958cf728e27b03d605fdb51a6dcbc3)
+        namespace: 4aa381a2-af96-4898-9455-168207961410
+        group: GRADLE
+      config:
+        server-addr: ENC(218076d74b539968dca24a9a0958ea7b3c958cf728e27b03d605fdb51a6dcbc3)
+        namespace: 4aa381a2-af96-4898-9455-168207961410
+        group: GRADLE
+        file-extension: yml
+        shared-configs:
+          - data-id: application-commons.yml
+            group: GRADLE
