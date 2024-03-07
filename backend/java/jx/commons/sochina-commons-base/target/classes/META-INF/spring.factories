@@ -1,3 +1,0 @@
-org.springframework.cloud.bootstrap.BootstrapConfiguration=\
-com.sochina.base.jasypt.gm.SM4EncryptorByEcb, \
-com.sochina.base.jasypt.gm.SM4EncryptorByCbc
