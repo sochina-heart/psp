@@ -6,6 +6,7 @@ import com.sochina.base.properties.httpClient.HttpClientUploadProperties
 import com.sochina.base.utils.HttpClientUtils
 import com.sochina.base.utils.character.XssUtils
 import com.sochina.base.utils.uuid.UuidUtils
+import com.sochina.base.utils.verification.code.impl.ChineseArithmeticVerificationCodeTool
 import com.sochina.base.utils.web.AjaxResult
 import com.sochina.demo.domain.User
 import com.sochina.demo.service.impl.IUserServiceImpl
@@ -13,7 +14,9 @@ import com.sochina.mvc.utils.ServletUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
+import java.io.File
 import java.util.*
+import javax.imageio.ImageIO
 
 /**
  * @author sochina-heart
@@ -25,7 +28,8 @@ import java.util.*
 // @Component
 class TestController(
     private val commonsProperties: CommonsProperties,
-    private val userServiceImpl: IUserServiceImpl
+    private val userServiceImpl: IUserServiceImpl,
+    private val chineseArithmeticVerificationCodeTool: ChineseArithmeticVerificationCodeTool
 ) {
 
 // class TestController {
@@ -51,6 +55,14 @@ class TestController(
     // fun setCommonsProperties(commonsProperties: CommonsProperties) {
     //     this.commonsProperties = commonsProperties
     // }
+
+    @PostMapping("/code/demo")
+    fun createCodeImage(): AjaxResult {
+        val verificationCode = chineseArithmeticVerificationCodeTool.createVerificationCodeImage(200, 150)
+        ImageIO.write(verificationCode.image, "png", File("D:\\Users\\sochina\\Downloads\\1111\\1.png"))
+        return AjaxResult.success()
+    }
+
     @PostMapping("/user/add")
     fun userAdd(@RequestBody user: User): AjaxResult {
         user.id = UuidUtils.simpleUUID()

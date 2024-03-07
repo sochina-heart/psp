@@ -25,12 +25,12 @@ class TaskToolExecutor {
     /**
      * 核心线程数
      */
-    private var coreSize = 0
+    var coreSize = 0
 
     /**
      * 最大线程数
      */
-    private var maxSize = 0
+    var maxSize = 0
 
     /**
      * 空闲线程存活时间

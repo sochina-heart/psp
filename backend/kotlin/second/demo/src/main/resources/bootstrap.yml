@@ -1,7 +1,3 @@
-server:
-  port: 18888
-  servlet:
-    context-path: /k
 jasypt:
   encryptor:
     bean: SM4CbcJasypt
