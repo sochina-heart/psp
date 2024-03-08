@@ -25,7 +25,6 @@ import javax.imageio.ImageIO
 // @Component
 class TestController(
     private val commonsProperties: CommonsProperties,
-    private val userServiceImpl: IUserServiceImpl,
     private val chineseArithmeticVerificationCodeTool: ChineseArithmeticVerificationCodeTool
 ) {
 
@@ -58,12 +57,6 @@ class TestController(
         val verificationCode = chineseArithmeticVerificationCodeTool.createVerificationCodeImage(200, 150)
         ImageIO.write(verificationCode.image, "png", File("D:\\Users\\sochina\\Downloads\\1111\\1.png"))
         return AjaxResult.success()
-    }
-
-    @PostMapping("/user/{id}")
-    fun userGetById(@PathVariable id: String): AjaxResult {
-        val user = userServiceImpl.getById(id)
-        return AjaxResult.success(user)
     }
 
     @GetMapping("/cookie/demo")
