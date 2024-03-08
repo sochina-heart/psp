@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.io.opencensus.trace.Span.Options
+import org.jetbrains.kotlin.daemon.common.compareDaemonJVMOptionsMemory
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 extra["log4j"] = "2.23.0"
@@ -27,6 +29,16 @@ repositories {
 
 tasks.bootJar{
     enabled = false
+}
+
+allprojects {
+    tasks.withType<JavaCompile> {
+        options.encoding = "utf-8"
+    }
+
+    tasks.withType<JavaExec> {
+        systemProperty("file.encoding", "utf-8")
+    }
 }
 
 subprojects {
