@@ -6,3 +6,6 @@ include("base")
 include("servlet")
 include("demo")
 include("gateway")
+include("test")
+// include("hello:untitled")
+// findProject(":hello:untitled")?.name = "untitled"
