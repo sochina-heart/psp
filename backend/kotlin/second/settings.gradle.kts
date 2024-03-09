@@ -3,6 +3,6 @@ plugins {
 }
 rootProject.name = "second"
 include("base")
-include("m2")
+include("servlet")
 include("demo")
 include("gateway")

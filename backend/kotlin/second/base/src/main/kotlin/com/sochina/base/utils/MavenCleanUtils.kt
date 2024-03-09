@@ -4,6 +4,7 @@ import cn.hutool.core.date.SystemClock
 import cn.hutool.core.io.FileUtil
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.util.StopWatch
 import java.io.File
 import java.util.regex.Pattern
 
@@ -11,16 +12,24 @@ object MavenCleanUtils {
 
     private val LOGGER: Logger = LoggerFactory.getLogger(MavenCleanUtils::class.java)
 
-    private val LAST_UPDATED_PATTERN: Pattern = Pattern.compile(".*lastUpdated.*")
-    private val IN_PROGRESS_PATTERN: Pattern = Pattern.compile(".*-in-progress")
-    private val METADATA_XML_PATTERN: Pattern = Pattern.compile(".*maven-metadata-.*\\.xml.*")
-    private val RESOLVER_STATUS_PATTERN: Pattern = Pattern.compile(".*resolver-status\\.properties")
-    private val REMOTE_REPOSITORIES_PATTERN: Pattern = Pattern.compile(".*_remote.repositories.*")
-    private val UN_KNOWN_PATTERN: Pattern = Pattern.compile("unknown")
+    private var patternList: List<String> = emptyList()
+
+    init {
+        patternList = listOf(
+            ".*lastUpdated.*",
+            ".*-in-progress",
+            ".*maven-metadata-.*\\.xml.*",
+            ".*resolver-status\\.properties",
+            ".*_remote.repositories.*",
+            "unknown",
+        )
+    }
+
+    private var watch = StopWatch()
 
 
     fun clean(url: File) {
-        val start = SystemClock.now()
+        watch.start()
         // handleFile(url)
         val patterList = listOf(
             ".*lastUpdated.*",
@@ -32,8 +41,8 @@ object MavenCleanUtils {
         )
         handleFile(url, patterList)
         handleEmptyDirectory(url)
-        val end = SystemClock.now()
-        LOGGER.info("maven clean consuming time ${(end - start) / 1000} s")
+        watch.stop()
+        LOGGER.info("maven clean consuming time ${watch.lastTaskInfo().timeMillis} s")
     }
 
     fun handleFile(url: File) {
@@ -41,7 +50,7 @@ object MavenCleanUtils {
             if (it.isDirectory) {
                 handleFile(it)
             } else {
-                if (isMatchPattern(it.name)) {
+                if (isMatchPattern(it.name, patternList)) {
                     it.delete()
                     LOGGER.info("file ${it.absolutePath} delete")
                 }
@@ -69,15 +78,6 @@ object MavenCleanUtils {
                 LOGGER.info("folder ${it.absolutePath} delete")
             }
         }
-    }
-
-    private fun isMatchPattern(url: String): Boolean {
-        return LAST_UPDATED_PATTERN.matcher(url).matches() ||
-                IN_PROGRESS_PATTERN.matcher(url).matches() ||
-                METADATA_XML_PATTERN.matcher(url).matches() ||
-                RESOLVER_STATUS_PATTERN.matcher(url).matches() ||
-                REMOTE_REPOSITORIES_PATTERN.matcher(url).matches() ||
-                UN_KNOWN_PATTERN.matcher(url).matches()
     }
 
     private fun isMatchPattern(url: String, list: List<String>): Boolean {
