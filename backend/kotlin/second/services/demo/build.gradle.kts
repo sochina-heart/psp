@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(":servlet"))
+    implementation(project(":commons:servlet"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.baomidou:mybatis-plus-boot-starter:3.5.5") {
         exclude("org.mybatis", "mybatis-spring")

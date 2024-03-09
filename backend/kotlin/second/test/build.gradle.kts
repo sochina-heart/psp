@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":servlet"))
+    implementation(project(":commons:servlet"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
