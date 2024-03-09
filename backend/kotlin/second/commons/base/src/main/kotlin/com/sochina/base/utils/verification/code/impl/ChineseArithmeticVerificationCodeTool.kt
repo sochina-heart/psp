@@ -14,7 +14,7 @@ import java.util.*
 
 @Component
 class ChineseArithmeticVerificationCodeTool: IVerificationCodeTool() {
-    private val LOGGER: Logger = LoggerFactory.getLogger(ChineseArithmeticVerificationCodeTool::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(ChineseArithmeticVerificationCodeTool::class.java)
     private val DISTURB_LINE_SIZE = 15
     private val CVC_NUMBERS = arrayOf(
         "\u96F6",
@@ -61,8 +61,8 @@ class ChineseArithmeticVerificationCodeTool: IVerificationCodeTool() {
             drawDisturbLineReduce(g, 13, 15, img_width, img_height, getRandomColor(200, 255))
         }
         getRandomMathString()
-        LOGGER.debug("验证码：{}", randomString)
-        LOGGER.debug("验证码结果：{}", xyResult)
+        logger.debug("验证码：{}", randomString)
+        logger.debug("验证码结果：{}", xyResult)
         val logsu = StringBuffer()
         var j = 0
         val k = randomString!!.length
@@ -80,7 +80,7 @@ class ChineseArithmeticVerificationCodeTool: IVerificationCodeTool() {
         }
         drawRandomString(g as Graphics2D, "\u7B49\u4E8E\uFF1F", 3)
         logsu.append("\u7B49\u4E8E \uFF1F")
-        LOGGER.debug("汉字验证码 : {}", logsu)
+        logger.debug("汉字验证码 : {}", logsu)
         randomString = logsu.toString()
         g.dispose()
         val verificationCode = VerificationCode()

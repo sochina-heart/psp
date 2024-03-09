@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component
 @Component
 class LogAspect {
 
-    private val LOGGER: Logger = LoggerFactory.getLogger(LogAspect::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(LogAspect::class.java)
 
     @AfterReturning(pointcut = "@annotation(log)", returning = "jsonResult")
     fun afterReturning(joinPoint: JoinPoint, log: LogMvc, jsonResult: Any?) {
@@ -32,7 +32,7 @@ class LogAspect {
         // val operLog: OperLog = OperLog()
         // getLogAnnotationDescription(joinPoint, log, operLog, jsonResult)
         // getMethodDescription(joinPoint, log, operLog, e, jsonResult)
-        // LOGGER.info(toJson<Any>(operLog))
+        // logger.info(toJson<Any>(operLog))
     }
 
     private fun getLogAnnotationDescription(joinPoint: JoinPoint, log: LogMvc, operLog: OperLog, jsonResult: Any?) {

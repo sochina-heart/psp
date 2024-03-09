@@ -9,6 +9,7 @@ import com.sochina.demo.mapper.SalariesMapper
 import jakarta.annotation.Resource
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
+import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -39,13 +40,13 @@ class SalariesListener(
 
     fun saveOne(data: Salaries?) {
         save(data)
-        logger.info("第" + count.getAndAdd(1) + "次插入1条数据")
+        LOGGER.info("第" + count.getAndAdd(1) + "次插入1条数据")
     }
 
     fun saveData() {
         if (salariesList.get().isNotEmpty()) {
             saveBatch(salariesList.get() as Collection<Salaries?>?, salariesList.get().size)
-            logger.info("第" + count.getAndAdd(1) + "次插入" + salariesList.get().size + "条数据")
+            LOGGER.info("第" + count.getAndAdd(1) + "次插入" + salariesList.get().size + "条数据")
             salariesList.get().clear()
         }
     }
@@ -61,7 +62,7 @@ class SalariesListener(
 
     @Transactional(rollbackFor = [Exception::class])
     override fun doAfterAllAnalysed(context: AnalysisContext) {
-        logger.info("一个Sheet全部处理完")
+        LOGGER.info("一个Sheet全部处理完")
         if (salariesList.get().size >= batchSize) {
             saveData()
         }
@@ -76,12 +77,12 @@ class SalariesListener(
 
         override fun run() {
             salariesListener!!.saveBatch(salariesList)
-            logger.info("第" + count.getAndAdd(1) + "次插入" + salariesList.size + "条数据")
+            LOGGER.info("第" + count.getAndAdd(1) + "次插入" + salariesList.size + "条数据")
         }
     }
 
     companion object {
-        private val logger: Log = LogFactory.getLog(
+        private val LOGGER = LoggerFactory.getLogger(
             SalariesListener::class.java
         )
 
