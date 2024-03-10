@@ -2,13 +2,10 @@ package com.sochina.demo.listener
 
 import com.alibaba.excel.context.AnalysisContext
 import com.alibaba.excel.read.listener.ReadListener
-import com.baomidou.mybatisplus.extension.service.IService
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
+import com.mybatisflex.core.service.IService
+import com.mybatisflex.spring.service.impl.ServiceImpl
 import com.sochina.demo.domain.Salaries
 import com.sochina.demo.mapper.SalariesMapper
-import jakarta.annotation.Resource
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Component

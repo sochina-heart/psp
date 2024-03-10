@@ -1,24 +1,24 @@
 package com.sochina.demo.domain
 
-import com.baomidou.mybatisplus.annotation.TableField
-import java.util.*
+import com.mybatisflex.annotation.Column
+import java.util.Date
 
 open class BaseDomain {
 
     var state: String? = null
 
-    @TableField("delete_flag")
+    @Column("delete_flag")
     var deleteFlag: String? = null
 
-    @TableField("create_by")
+    @Column("create_by")
     var createBy: String? = null
 
-    @TableField("create_time")
+    @Column("create_time")
     var createTime: Date? = null
 
-    @TableField("update_by")
+    @Column("update_by")
     var updateBy: String? = null
 
-    @TableField("update_time")
+    @Column("update_time")
     var updateTime: Date? = null
 }

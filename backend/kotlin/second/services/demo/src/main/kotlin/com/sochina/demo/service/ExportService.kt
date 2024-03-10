@@ -1,7 +1,7 @@
 package com.sochina.demo.service
 
 import com.alibaba.excel.EasyExcel
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page
+import com.mybatisflex.core.paginate.Page
 import com.sochina.demo.domain.Salaries
 import com.sochina.demo.mapper.SalariesMapper
 import jakarta.servlet.http.HttpServletResponse
@@ -21,7 +21,7 @@ class ExportService(
     fun exportExcel1(response: HttpServletResponse) {
         setExportHeader(response)
 
-        val salaries: List<Salaries> = salariesMapper.selectList(null) as List<Salaries>
+        val salaries: List<Salaries> = salariesMapper.selectListByQuery(null) as List<Salaries>
 
         EasyExcel.write(response.outputStream, Salaries::class.java).sheet().doWrite(salaries)
     }
@@ -31,7 +31,7 @@ class ExportService(
     fun exportExcel2(response: HttpServletResponse) {
         setExportHeader(response)
 
-        val salaries: List<Salaries> = salariesMapper.selectList(null) as List<Salaries>
+        val salaries: List<Salaries> = salariesMapper.selectListByQuery(null) as List<Salaries>
 
         EasyExcel.write(response.outputStream, Salaries::class.java).build().use { excelWriter ->
             val writeSheet1 = EasyExcel.writerSheet(1, "模板1").build()
@@ -55,21 +55,21 @@ class ExportService(
         setExportHeader(response)
 
         EasyExcel.write(response.outputStream, Salaries::class.java).build().use { excelWriter ->
-            val count: Long = salariesMapper.selectCount(null)
+            val count: Long = salariesMapper.selectCountByQuery(null)
             val pages = 10
             val size = count / pages
-            for (i in 0 until pages) {
-                val writeSheet = EasyExcel.writerSheet(i, "模板$i").build()
-
-                val page: Page<Salaries> =
-                    Page<Salaries>()
-                page.setCurrent((i + 1).toLong())
-                page.setSize(size)
-                val selectPage: Page<Salaries> =
-                    salariesMapper.selectPage(page, null)
-
-                excelWriter.write(selectPage.records, writeSheet)
-            }
+            // for (i in 0 until pages) {
+            //     val writeSheet = EasyExcel.writerSheet(i, "模板$i").build()
+            //
+            //     val page: Page<Salaries> =
+            //         Page<Salaries>()
+            //     page.pageNumber((i + 1).toLong())
+            //     page.setSize(size)
+            //     val selectPage: Page<Salaries> =
+            //         salariesMapper.selectPage(page, null)
+            //
+            //     excelWriter.write(selectPage.records, writeSheet)
+            // }
         }
     }
 
@@ -78,7 +78,7 @@ class ExportService(
     fun exportExcel4(response: HttpServletResponse) {
         setExportHeader(response)
 
-        val count: Long = salariesMapper.selectCount(null)
+        val count: Long = salariesMapper.selectCountByQuery(null)
 
         val pages = 20
         val size = count / pages
@@ -87,19 +87,19 @@ class ExportService(
         val countDownLatch = CountDownLatch(pages)
 
         val pageMap: MutableMap<Int, Page<Salaries>> = HashMap<Int, Page<Salaries>>()
-        for (i in 0 until pages) {
-            executorService.submit {
-                val page: Page<Salaries> =
-                    Page<Salaries>()
-                page.setCurrent((i + 1).toLong())
-                page.setSize(size)
-                val selectPage: Page<Salaries> =
-                    salariesMapper.selectPage(page, null)
-
-                pageMap[i] = selectPage
-                countDownLatch.countDown()
-            }
-        }
+        // for (i in 0 until pages) {
+        //     executorService.submit {
+        //         val page: Page<Salaries> =
+        //             Page<Salaries>()
+        //         page.pageSize((i + 1).toLong())
+        //         page.setSize(size)
+        //         val selectPage: Page<Salaries> =
+        //             salariesMapper.p(page, null)
+        //
+        //         pageMap[i] = selectPage
+        //         countDownLatch.countDown()
+        //     }
+        // }
 
         countDownLatch.await()
 

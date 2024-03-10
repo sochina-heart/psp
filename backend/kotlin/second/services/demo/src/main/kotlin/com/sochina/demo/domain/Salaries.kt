@@ -1,17 +1,17 @@
 package com.sochina.demo.domain
 
-import com.baomidou.mybatisplus.annotation.TableField
-import java.util.*
+import com.mybatisflex.annotation.Column
+import java.util.Date
 
 class Salaries {
-    @TableField("emp_no")
+    @Column("emp_no")
     var empNo: Int? = null
 
     var salary: Int? = null
 
-    @TableField("from_data")
+    @Column("from_data")
     var fromDate: Date? = null
 
-    @TableField("to_data")
+    @Column("to_data")
     var toDate: Date? = null
 }

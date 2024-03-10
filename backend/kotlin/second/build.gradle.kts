@@ -6,6 +6,7 @@ extra["log4j"] = "2.23.0"
 extra["lombok"] = "1.18.30"
 extra["bouncy"] = "1.77"
 extra["jedis"] = "5.1.1"
+extra["mybatis-flex"] = "1.8.2"
 extra["springCloud"] = "2023.0.0"
 extra["springCloudAlibaba"] = "2022.0.0.0"
 
