@@ -11,6 +11,7 @@ import java.awt.Font
 import java.awt.Graphics2D
 import java.awt.image.BufferedImage
 import java.util.*
+import kotlin.collections.HashMap
 
 @Component
 class ChineseArithmeticVerificationCodeTool: IVerificationCodeTool() {

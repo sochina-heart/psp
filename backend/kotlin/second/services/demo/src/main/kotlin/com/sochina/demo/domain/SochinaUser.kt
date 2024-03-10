@@ -8,7 +8,7 @@ import com.mybatisflex.annotation.Table
 @Table("sochina_user")
 class SochinaUser: BaseDomain() {
 
-    @Id(keyType = KeyType.None, value = "user_id")
+    @Id(keyType = KeyType.Generator, value = "sUuid")
     var userId: String? = null
 
     var account: String? = null

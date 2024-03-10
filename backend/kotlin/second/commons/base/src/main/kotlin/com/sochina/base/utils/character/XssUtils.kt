@@ -1,7 +1,7 @@
 package com.sochina.base.utils.character
 
 import com.sochina.base.properties.CommonsProperties
-import java.util.*
+import java.util.Optional
 import java.util.regex.Pattern
 
 class XssUtils private constructor(private val commonsProperties: CommonsProperties) :

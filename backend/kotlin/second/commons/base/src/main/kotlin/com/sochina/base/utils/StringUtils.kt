@@ -4,6 +4,7 @@ import cn.hutool.core.text.StrFormatter
 import cn.hutool.core.util.ReUtil.isMatch
 import org.springframework.util.AntPathMatcher
 import java.util.*
+import kotlin.collections.HashSet
 
 class StringUtils {
     companion object {

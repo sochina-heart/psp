@@ -1,6 +1,6 @@
 package com.sochina.base.domain
 
-import java.util.*
+import java.util.Date
 
 class OperLog {
     /**

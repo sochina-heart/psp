@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 object GsonUtils {
     private const val DATE_PATTERN = "yyyy-MM-dd HH:mm:ss"

@@ -6,6 +6,7 @@ import org.springframework.boot.runApplication
 import org.springframework.stereotype.Indexed
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
+
 // 在kotlin中{}意味着闭包
 @SpringBootApplication(scanBasePackages = ["com.sochina"])
 @EnableTransactionManagement

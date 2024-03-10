@@ -18,6 +18,7 @@ import java.net.URLDecoder
 import java.net.URLEncoder
 import java.util.*
 import java.util.stream.Collectors
+import kotlin.collections.HashMap
 
 class ServletUtils {
     companion object {

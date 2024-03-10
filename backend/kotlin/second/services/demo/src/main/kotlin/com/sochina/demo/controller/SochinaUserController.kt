@@ -1,7 +1,7 @@
 package com.sochina.demo.controller
 
+import com.mybatisflex.core.paginate.Page
 import com.mybatisflex.core.query.QueryWrapper
-import com.sochina.base.utils.uuid.UuidUtils
 import com.sochina.base.utils.web.AjaxResult
 import com.sochina.demo.domain.SochinaUser
 import com.sochina.demo.service.impl.SochinaUserServiceImpl
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
+import java.util.Date
 
 
 @RestController
@@ -32,16 +32,17 @@ class SochinaUserController(
         user.homeAddress.takeIf { !it.isNullOrBlank() }?.let { queryWrapper.like("home_address", it) }
         user.sex.takeIf { !it.isNullOrBlank() }?.let { queryWrapper.eq("sex", it) }
         val list = baseServiceImpl.list(queryWrapper)
+        val page = Page<SochinaUser>(1, 10)
+        baseServiceImpl.page(page,queryWrapper)
         return AjaxResult.success(list)
     }
 
-    @PostMapping("add")
+    @PostMapping("/add")
     fun addUser(@RequestBody user: SochinaUser): AjaxResult {
         val count = baseServiceImpl.count(QueryWrapper().eq("account", user.account))
         if (count > 0) {
             return AjaxResult.success("this user is exist")
         }
-        user.userId = UuidUtils.fastSimpleUUID()
         user.createTime = Date()
         baseServiceImpl.save(user)
         return AjaxResult.success("add user success")

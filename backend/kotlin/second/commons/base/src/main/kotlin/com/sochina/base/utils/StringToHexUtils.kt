@@ -1,7 +1,7 @@
 package com.sochina.base.utils
 
 import java.nio.charset.StandardCharsets
-import java.util.*
+import java.util.Date
 
 object StringToHexUtils {
     /**

@@ -21,4 +21,10 @@ open class BaseDomain {
 
     @Column("update_time")
     var updateTime: Date? = null
+
+    @Column(ignore = true)
+    var pageNumber: Int? = null
+
+    @Column(ignore = true)
+    var pageSize: Int? = null
 }

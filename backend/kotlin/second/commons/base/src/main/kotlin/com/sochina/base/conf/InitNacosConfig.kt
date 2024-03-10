@@ -3,7 +3,7 @@
 // import com.sochina.base.utils.encrypt.gm.sm4.SM4Utils
 // import java.io.InputStreamReader
 // import java.nio.charset.StandardCharsets
-// import java.util.*
+// import java.util.Date
 //
 // class InitNacosConfig {
 //
