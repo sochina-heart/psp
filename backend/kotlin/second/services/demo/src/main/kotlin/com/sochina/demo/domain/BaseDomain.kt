@@ -2,6 +2,8 @@ package com.sochina.demo.domain
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.mybatisflex.annotation.Column
+import com.sochina.base.domain.Page
+import org.apache.poi.ss.formula.functions.T
 import java.io.Serializable
 import java.util.Date
 
@@ -27,8 +29,5 @@ open class BaseDomain: Serializable {
     var updateTime: Date? = null
 
     @Column(ignore = true)
-    var pageNumber: Int? = 1
-
-    @Column(ignore = true)
-    var pageSize: Int? = 10
+    var page: Page<T>? = null
 }

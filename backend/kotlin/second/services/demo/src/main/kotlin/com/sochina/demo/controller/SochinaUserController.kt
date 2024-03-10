@@ -31,7 +31,7 @@ class SochinaUserController(
         user.userEmail.takeIf { !it.isNullOrBlank() }?.let { queryWrapper.like("user_email", it) }
         user.homeAddress.takeIf { !it.isNullOrBlank() }?.let { queryWrapper.like("home_address", it) }
         user.sex.takeIf { !it.isNullOrBlank() }?.let { queryWrapper.eq("sex", it) }
-        val list = baseServiceImpl.page(Page(user.pageNumber, user.pageSize),queryWrapper)
+        val list = baseServiceImpl.page(Page(user.page!!.pageNumber, user.page!!.pageSize),queryWrapper)
         return AjaxResult.success(list)
     }
 
