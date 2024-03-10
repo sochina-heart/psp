@@ -1,8 +1,9 @@
 package com.sochina.base.domain
 
+import java.io.Serializable
 import java.util.Date
 
-class OperLog {
+class OperLog: Serializable {
     /**
      * 日志主键
      */

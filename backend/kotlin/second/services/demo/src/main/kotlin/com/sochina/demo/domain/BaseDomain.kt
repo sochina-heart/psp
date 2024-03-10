@@ -2,9 +2,10 @@ package com.sochina.demo.domain
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.mybatisflex.annotation.Column
+import java.io.Serializable
 import java.util.Date
 
-open class BaseDomain {
+open class BaseDomain: Serializable {
 
     var state: String? = null
 

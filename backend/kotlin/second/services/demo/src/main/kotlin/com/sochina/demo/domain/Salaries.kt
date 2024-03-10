@@ -1,9 +1,10 @@
 package com.sochina.demo.domain
 
 import com.mybatisflex.annotation.Column
+import java.io.Serializable
 import java.util.Date
 
-class Salaries {
+class Salaries: Serializable {
     @Column("emp_no")
     var empNo: Int? = null
 

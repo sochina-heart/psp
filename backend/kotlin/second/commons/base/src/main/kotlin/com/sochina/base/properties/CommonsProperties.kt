@@ -6,7 +6,7 @@ import java.io.Serializable
 
 @ConfigurationProperties(prefix = "sochina")
 @Configuration
-class CommonsProperties {
+class CommonsProperties: Serializable {
 
     var xssProperties = XssProperties()
 }
