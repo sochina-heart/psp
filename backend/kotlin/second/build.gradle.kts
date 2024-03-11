@@ -1,9 +1,6 @@
-import org.gradle.internal.impldep.io.opencensus.trace.Span.Options
-import org.jetbrains.kotlin.daemon.common.compareDaemonJVMOptionsMemory
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 extra["log4j"] = "2.23.0"
-extra["lombok"] = "1.18.30"
 extra["bouncy"] = "1.77"
 extra["jedis"] = "5.1.1"
 extra["mybatis-flex"] = "1.8.2"
@@ -43,48 +40,49 @@ allprojects {
 }
 
 subprojects {
-    apply{
-        plugin("org.springframework.boot")
-        plugin("io.spring.dependency-management")
-        plugin("org.jetbrains.kotlin.jvm")
-        plugin("org.jetbrains.kotlin.plugin.spring")
-    }
+    if (project.name != "commons" && project.name != "services") {
+        apply{
+            plugin("org.springframework.boot")
+            plugin("io.spring.dependency-management")
+            plugin("org.jetbrains.kotlin.jvm")
+            plugin("org.jetbrains.kotlin.plugin.spring")
+        }
 
-    dependencyManagement {
+        dependencyManagement {
+            dependencies {
+                dependency("org.apache.logging.log4j:log4j-core:${property("log4j")}")
+                dependency("org.apache.logging.log4j:log4j-to-slf4j:${property("log4j")}")
+                dependency("org.bouncycastle:bcprov-jdk18on:${property("bouncy")}")
+                dependency("org.bouncycastle:bcpkix-jdk18on:${property("bouncy")}")
+                dependency("redis.clients:jedis:${property("jedis")}")
+            }
+            imports {
+                mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloud")}")
+                mavenBom( "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibaba")}")
+            }
+        }
+
         dependencies {
-            dependency("org.apache.logging.log4j:log4j-core:${property("log4j")}")
-            dependency("org.apache.logging.log4j:log4j-to-slf4j:${property("log4j")}")
-            dependency("org.projectlombok:lombok:${property("lombok")}")
-            dependency("org.bouncycastle:bcprov-jdk18on:${property("bouncy")}")
-            dependency("org.bouncycastle:bcpkix-jdk18on:${property("bouncy")}")
-            dependency("redis.clients:jedis:${property("jedis")}")
+            implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+            implementation("org.jetbrains.kotlin:kotlin-reflect")
         }
-        imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloud")}")
-            mavenBom( "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibaba")}")
+
+        tasks.withType<KotlinCompile> {
+            kotlinOptions {
+                freeCompilerArgs += "-Xjsr305=strict"
+                jvmTarget = "21"
+            }
         }
-    }
 
-    dependencies {
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs += "-Xjsr305=strict"
-            jvmTarget = "21"
+        tasks.withType<Test> {
+            useJUnitPlatform()
         }
-    }
 
-    tasks.withType<Test> {
-        useJUnitPlatform()
-    }
-
-    tasks.bootJar {
-        archiveAppendix = "0.0.1-SNAPSHOT"
-    }
-    tasks.jar {
-        archiveAppendix = "0.0.1-SNAPSHOT"
+        tasks.bootJar {
+            archiveAppendix = "0.0.1-SNAPSHOT"
+        }
+        tasks.jar {
+            archiveAppendix = "0.0.1-SNAPSHOT"
+        }
     }
 }

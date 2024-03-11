@@ -1,7 +1,6 @@
 dependencies {
     implementation("org.apache.logging.log4j:log4j-core")
     implementation("org.apache.logging.log4j:log4j-to-slf4j")
-    api("org.projectlombok:lombok")
     implementation("org.bouncycastle:bcprov-jdk18on")
     implementation("org.bouncycastle:bcpkix-jdk18on")
     api("cn.hutool:hutool-all:5.8.26")
@@ -15,9 +14,4 @@ dependencies {
 
 tasks.bootJar {
     enabled = false
-    archiveBaseName = "base"
-}
-
-tasks.jar {
-    archiveBaseName = "base"
 }
