@@ -35,7 +35,7 @@ const state = reactive({
 
 const userListData = () => {
   state.loading = true
-  userList({page: 1, size: 10}).then((res:any) => {
+  userList({page: 1, size: 10}).then((res) => {
     state.userList = res.data.list
     state.total = res.data.total
     state.loading = false
