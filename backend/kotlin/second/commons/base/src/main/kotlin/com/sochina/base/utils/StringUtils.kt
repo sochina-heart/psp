@@ -1,10 +1,8 @@
 package com.sochina.base.utils
 
 import cn.hutool.core.text.StrFormatter
-import cn.hutool.core.util.ReUtil.isMatch
 import org.springframework.util.AntPathMatcher
 import java.util.*
-import kotlin.collections.HashSet
 
 class StringUtils {
     companion object {
@@ -418,9 +416,7 @@ class StringUtils {
          * @return 是否匹配
          */
         @JvmStatic
-        fun matches(str: String, strs: List<String?>): Boolean {
-            return strs.any { isMatch(it, str) }
-        }
+        fun matches(str: String, strs: List<String?>): Boolean = strs.any { this.isMatch(it!!, str) }
 
         /**
          * 判断url是否与规则配置:
@@ -433,15 +429,11 @@ class StringUtils {
          * @return
          */
         @JvmStatic
-        fun isMatch(pattern: String, url: String): Boolean {
-            val matcher = AntPathMatcher()
-            return matcher.match(pattern, url)
-        }
+        fun isMatch(pattern: String, url: String): Boolean = url.matches(Regex(pattern))
 
         @JvmStatic
-        fun <T> cast(obj: Any): T {
-            return obj as T
-        }
+        @Suppress("UNCHECKED_CAST")
+        fun <T> cast(obj: Any): T = obj as T
 
         /**
          * 数字左边补齐0，使之达到指定长度。注意，如果数字转换为字符串后，长度大于size，则只保留 最后size个字符。
@@ -451,9 +443,7 @@ class StringUtils {
          * @return 返回数字的字符串格式，该字符串为指定长度。
          */
         @JvmStatic
-        fun padl(num: Number, size: Int): String {
-            return padl(num.toString(), size, '0')
-        }
+        fun padl(num: Number, size: Int): String = padl(num.toString(), size, '0')
 
         /**
          * 字符串左补齐。如果原始字符串s长度大于size，则只保留最后size个字符。
