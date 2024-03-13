@@ -1,5 +1,6 @@
 package com.sochina.demo
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
 import org.mybatis.spring.annotation.MapperScan
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @EnableTransactionManagement
 @Indexed
 @MapperScan("com.sochina")
+@EnableEncryptableProperties
 class KsDemoApplication
 
 fun main(args: Array<String>) {

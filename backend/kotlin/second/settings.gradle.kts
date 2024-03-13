@@ -5,5 +5,4 @@ rootProject.name = "second"
 include("commons:base")
 include("commons:servlet")
 include("services:demo")
-include("services:gateway")
 include("test")

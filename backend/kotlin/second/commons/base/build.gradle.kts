@@ -9,7 +9,7 @@ dependencies {
     implementation("org.apache.httpcomponents.core5:httpcore5:5.2.4")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.springframework.boot:spring-boot-starter")
-    api("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
+    api("com.github.ulisesbocchio:jasypt-spring-boot:3.0.5")
 }
 
 tasks.bootJar {

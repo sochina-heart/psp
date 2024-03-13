@@ -1,0 +1,27 @@
+sochina:
+  sql-properties:
+    enable: true
+    pattern: ((\\%3D)|(=))[^\n]*((\\%27)|(')|(--)|(\\%3B)|(;))
+    sensitive-data: DELETE,UPDATE,INSERT,TRUNCATE,DROP,ALTER
+    keyword: SELECT,FROM,WHERE,AND,OR,ORDER,BY,GROUP,HAVING,UNION,ALL
+    exclude-url:
+      - /demo/demo
+  xss-properties:
+    enable: true
+    sensitive-data: <,>,&,(,),(,),\,@,;,=,^
+    pattern:
+      script: <\\s*script\\b[^>]*>(.*?)<\\s*/\\s*script\\s*>
+      onload: (<[^>]*)onload=([^>]*>)
+      onclick: (<[^>]*)onclick=([^>]*>)
+      ondbclick: (<[^>]*)ondbclick=([^>]*>)
+      onchange: (<[^>]*)onchange=([^>]*>)
+      onblur: (<[^>]*)onblur=([^>]*>)
+      onfocus: (<[^>]*)onfocus=([^>]*>)
+      onkeypress: (<[^>]*)onkeypress=([^>]*>)
+      onkeydown: (<[^>]*)onkeydown=([^>]*>)
+      onkeyup: (<[^>]*)onkeyup=([^>]*>)
+      onmousedown: (<[^>]*)onmousedown=([^>]*>)
+      onmousemove: (<[^>]*)onmousemove=([^>]*>)
+      onmouseout: (<[^>]*)onmouseout=([^>]*>)
+    exclude-url:
+      - /demo/demo

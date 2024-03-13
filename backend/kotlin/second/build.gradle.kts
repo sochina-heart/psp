@@ -4,8 +4,6 @@ extra["log4j"] = "2.23.0"
 extra["bouncy"] = "1.77"
 extra["jedis"] = "5.1.1"
 extra["mybatis-flex"] = "1.8.2"
-extra["springCloud"] = "2023.0.0"
-extra["springCloudAlibaba"] = "2022.0.0.0"
 
 plugins {
     id("org.springframework.boot") version "3.2.3"
@@ -55,10 +53,6 @@ subprojects {
                 dependency("org.bouncycastle:bcprov-jdk18on:${property("bouncy")}")
                 dependency("org.bouncycastle:bcpkix-jdk18on:${property("bouncy")}")
                 dependency("redis.clients:jedis:${property("jedis")}")
-            }
-            imports {
-                mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloud")}")
-                mavenBom( "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibaba")}")
             }
         }
 
