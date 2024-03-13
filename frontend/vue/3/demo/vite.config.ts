@@ -25,11 +25,11 @@ export default defineConfig(({command, mode}) => {
         server: {
             host: true,
             // 设置端口号
-            port: 18889,
+            port: Number(env.VITE_APP_PORT),
             //自动打开浏览器
             open: false,
             proxy: {
-                "/api": {
+                [`${env.VITE_APP_BASE_URL}`]: {
                     // 代理目标地址
                     target: "http://localhost:18888",
                     // 允许跨域
@@ -39,7 +39,7 @@ export default defineConfig(({command, mode}) => {
                     // 验证SSL证书
                     secure: false,
                     // 重写path路径
-                    rewrite: (path) => path.replace(/^\/api/, ""),
+                    rewrite: (path) => path.replace(new RegExp('^' + env.VITE_APP_BASE_URL), ""),
                 },
             },
         },
