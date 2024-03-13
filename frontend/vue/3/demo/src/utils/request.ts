@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
+import axios, {AxiosInstance, AxiosRequestConfig} from "axios";
 import {handleMessage} from "./status"; // 引入状态码文件
 import { ElMessage } from "element-plus"; // 引入el 提示框，这个项目里用什么组件库这里引什么
 
@@ -18,16 +18,16 @@ const service: AxiosInstance = axios.create({
 
 
 // 响应拦截
-axios.interceptors.response.use(
-    (response: AxiosResponse) => {
-        return response;
+service.interceptors.response.use(
+    (response) => {
+        return response.data;
     },
     (error) => {
-        const { response } = error;
+        const { response } = error.data;
         if (response) {
             // 请求已发出，但是不在2xx的范围
-            handleMessage(response.status); // 传入响应码，匹配响应码对应信息
-            return Promise.reject(response.data);
+            handleMessage(response.code); // 传入响应码，匹配响应码对应信息
+            return Promise.reject("error");
         } else {
             ElMessage.warning("网络连接异常,请稍后再试!");
         }

@@ -17,13 +17,13 @@ export default defineConfig({
     server: {
         host: true,
         // 设置端口号
-        port: 8080,
+        port: 18889,
         //自动打开浏览器
-        open: true,
+        open: false,
         proxy: {
             "/api": {
                 // 代理目标地址
-                target: "http://127.0.0.1",
+                target: "http://localhost:18888",
                 // 允许跨域
                 changeOrigin: true,
                 // 开启websockets代理

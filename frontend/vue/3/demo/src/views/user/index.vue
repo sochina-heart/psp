@@ -1,11 +1,11 @@
 <template>
-  <el-table :data="tableData" style="width: 100%">
-    <el-table-column fixed prop="date" label="Date" width="150" />
-    <el-table-column prop="name" label="Name" width="120" />
-    <el-table-column prop="state" label="State" width="120" />
-    <el-table-column prop="city" label="City" width="120" />
-    <el-table-column prop="address" label="Address" width="600" />
-    <el-table-column prop="zip" label="Zip" width="120" />
+  <el-table :data="state.userList" style="width: 100%">
+    <el-table-column fixed prop="userId" label="id" width="150" />
+    <el-table-column prop="account" label="账号" width="120" />
+    <el-table-column prop="userName" label="用户名" width="120" />
+    <el-table-column prop="userEmail" label="邮箱" width="120" />
+    <el-table-column prop="homeAddress" label="Address" width="600" />
+    <el-table-column prop="personalDescription" label="Zip" width="120" />
     <el-table-column fixed="right" label="Operations" width="120">
       <template #default>
         <el-button link type="primary" size="small" @click="handleClick"
@@ -30,15 +30,27 @@ onMounted(() => {
 const state = reactive({
   userList: [],
   total: 0,
-  loading: false
+  loading: false,
+  queryParams: {
+    page: {
+      pageNumber: 1,
+      pageSize: 10
+    },
+  }
 })
 
 const userListData = () => {
   state.loading = true
-  userList({page: 1, size: 10}).then((res) => {
-    state.userList = res.data.list
-    state.total = res.data.total
+  userList(state.queryParams).then((res) => {
+    state.userList = res.data.records
+    state.total = res.data.totalRow
     state.loading = false
+    console.log(res.data)
+    for (let i = 0; i < state.userList.length; i++) {
+      console.log(state.userList[i].userId)
+      console.log(state.userList[i].account)
+      console.log(state.userList[i].userName)
+    }
   })
 }
 
