@@ -32,8 +32,6 @@ export default defineConfig(({command, mode}) => {
                 [`${env.VITE_APP_BASE_URL}`]: {
                     // 代理目标地址
                     target: "http://localhost:18888",
-                    // 允许跨域
-                    changeOrigin: true,
                     // 开启websockets代理
                     ws: true,
                     // 验证SSL证书
