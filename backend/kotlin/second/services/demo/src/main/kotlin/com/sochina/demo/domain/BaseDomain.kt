@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.mybatisflex.annotation.Column
 import com.sochina.base.domain.Page
-import org.apache.poi.ss.formula.functions.T
 import java.io.Serializable
 import java.util.Date
 open class BaseDomain: Serializable {
@@ -30,5 +29,5 @@ open class BaseDomain: Serializable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(ignore = true)
-    var page: Page<T>? = null
+    var page: Page<Any>? = null
 }
