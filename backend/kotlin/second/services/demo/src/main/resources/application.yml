@@ -17,9 +17,13 @@ spring:
       port: 51050
       database: 1
       password: ENC(0766524595b28ce260ce16a3dc4be135149c8e591f474a73b3eaa45a11d61f55)
+  main:
+    banner-mode: off
 mybatis-flex:
   mapper-locations: classpath*:mapper/*Mapper.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    print-banner: false
 server:
   port: 18888

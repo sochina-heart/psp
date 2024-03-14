@@ -9,5 +9,5 @@ dependencies {
     implementation("com.zaxxer:HikariCP:5.1.0")
     implementation("com.mysql:mysql-connector-j:8.3.0")
     implementation("org.springframework.boot:spring-boot-starter-aop")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("com.alibaba.fastjson2:fastjson2:2.0.47")
 }

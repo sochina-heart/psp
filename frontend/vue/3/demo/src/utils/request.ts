@@ -23,13 +23,10 @@ service.interceptors.response.use(
         return response.data;
     },
     (error) => {
-        const { response } = error.data;
-        if (response) {
-            // 请求已发出，但是不在2xx的范围
-            handleMessage(response.code); // 传入响应码，匹配响应码对应信息
-            return Promise.reject("error");
+        if (error) {
+            return Promise.reject(handleMessage(error.response.data.status));
         } else {
-            ElMessage.warning("网络连接异常,请稍后再试!");
+            ElMessage.warning(error);
         }
     }
 );

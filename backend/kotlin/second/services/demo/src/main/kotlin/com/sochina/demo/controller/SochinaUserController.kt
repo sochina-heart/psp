@@ -1,5 +1,8 @@
 package com.sochina.demo.controller
 
+import com.alibaba.fastjson2.JSON
+import com.alibaba.fastjson2.JSONObject
+import com.alibaba.fastjson2.TypeReference
 import com.mybatisflex.core.paginate.Page
 import com.mybatisflex.core.query.QueryWrapper
 import com.sochina.base.utils.encrypt.gm.SM3Utils
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.Date
+import java.util.*
 
 
 @RestController
@@ -51,5 +54,20 @@ class SochinaUserController(
         user.userPassword = SM3Utils.encrypt(user.userPassword!!)
         baseServiceImpl.save(user)
         return AjaxResult.success("add user success")
+    }
+
+    @PostMapping("/remove")
+    fun removeUser(@RequestBody json: JSONObject): AjaxResult {
+        val ids = JSON.parseObject(json.getString("ids"), object : TypeReference<List<String>>() {})
+        if (ids.isEmpty()) {
+            return AjaxResult.success()
+        }
+        val list = mutableListOf<SochinaUser>()
+        ids.forEach {
+            list.add(SochinaUser().apply {
+            this.userId = it
+            this.deleteFlag = "1"
+        }) }
+        return AjaxResult.toAjax(baseServiceImpl.updateBatch(list))
     }
 }
