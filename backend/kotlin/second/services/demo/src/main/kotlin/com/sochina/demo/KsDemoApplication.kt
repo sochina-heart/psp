@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.stereotype.Indexed
 import org.springframework.transaction.annotation.EnableTransactionManagement
+import org.springframework.web.reactive.config.EnableWebFlux
 
 
 // 在kotlin中{}意味着闭包
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @Indexed
 @MapperScan("com.sochina")
 @EnableEncryptableProperties
+@EnableWebFlux
 class KsDemoApplication
 
 fun main(args: Array<String>) {
