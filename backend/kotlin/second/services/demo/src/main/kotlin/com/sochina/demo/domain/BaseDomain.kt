@@ -6,6 +6,7 @@ import com.mybatisflex.annotation.Column
 import com.sochina.base.domain.Page
 import java.io.Serializable
 import java.util.Date
+
 open class BaseDomain: Serializable {
 
     var state: String? = null

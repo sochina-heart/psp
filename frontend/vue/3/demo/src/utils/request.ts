@@ -1,10 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from "axios";
-import {handleMessage} from "./status"; // 引入状态码文件
-import { ElMessage } from "element-plus"; // 引入el 提示框，这个项目里用什么组件库这里引什么
-
-// 设置接口超时时间
-axios.defaults.timeout = 60000;
-// axios.defaults.baseURL = "/api" || "";  // 自定义接口地址
+import {handleMessage} from "./status";
+import { ElMessage } from "element-plus";
 
 interface requestType {
     url: string
@@ -13,7 +9,7 @@ interface requestType {
 
 const service: AxiosInstance = axios.create({
     baseURL:import.meta.env.VITE_APP_BASE_URL,
-    timeout:30000,
+    timeout:import.meta.env.VITE_APP_TIMEOUT,
 });
 
 
